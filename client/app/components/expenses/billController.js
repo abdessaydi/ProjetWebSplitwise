@@ -3,7 +3,7 @@
 
 	angular
 		.module('controllers')
-		.controller('signupController', ['$scope', function($scope){
+		.controller('BillController', ['$scope', function($scope){
 			
 		}])
 })();

@@ -36,13 +36,27 @@ var contactSchema = new Schema({
 );
 
 var UserSchema  = new Schema({
-	clientID: Number,
+	userID: Number,
 	username: String,
 	lastName: String,
 	firstName: String,
 	email: String,
 	password: String,
-	token: String
+	token: String,
+	/*groups: [],
+	friends: [],
+	total_i_owe: Number,
+	total_i_am_owed: Number*/
+})
+
+var BillShcema = new Schema({
+	billID: Number,
+	billname: String,
+	description: String,
+	Amount: Number,
+	payed_by:Number,
+	created_by:Number 
+
 })
 var contactModel = mongoose.model('contact', contactSchema);
 var userModel = mongoose.model('user', UserSchema);

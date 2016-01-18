@@ -13,10 +13,10 @@
 	angular
 		.module('appModule', [
 			'ui.router',
-			//'LocalStorageModule',
 			'controllers',
 			'ui.bootstrap',
-			'ngResource'
+			'ngResource',
+			'LocalStorageModule',
 		])
 
 })();

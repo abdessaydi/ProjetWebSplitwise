@@ -3,11 +3,11 @@
 
     angular
     .module('controllers')
-    .controller('NavbarController',['$scope', 'SignupService', function($scope, SignupService){
+    .controller('NavbarController',['$scope','$rootScope', 'SignupService'
+            ,function($scope, $rootScope , SignupService){
 
     $scope.signUp = function() {
-               
-    	        if(true){
+    	        if(isFormValid()){
                 var newUser = {
                         username: $scope.signUpUser.name,
                         lastName: $scope.signUpUser.last,
@@ -19,11 +19,8 @@
                 var newNewUser = new SignupService(newUser);
                 
                 newNewUser.$save(function(res) {
-                    $scope.hello= 'hello'
                     if (res.type == false) {
                         alert(res.data);
-                        $scope.hello= 'hello'
-
                     } else {
                         $('#modal-signup').modal('hide');
                         $scope.signInUser.username = newUser.username
@@ -34,6 +31,7 @@
             }
         }
 
+       
         function isFormValid(){
             $scope.error = null
 
@@ -69,6 +67,16 @@
             var re = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
             return re.test(email);
         } 
+
+        function refreshScope(){
+            $scope.error = null
+            $scope.signInUser = {}
+            $scope.signUpUser = {}
+        }
+
+
+        refreshScope()
+
 
     }]);
 })();

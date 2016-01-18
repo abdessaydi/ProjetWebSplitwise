@@ -142,8 +142,33 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!--
-<div id="sidebar-wrapper-left" class="menuSidebar">
+
+
+ <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+           
+            <ul class="nav nav-sidebar">
+             <li hide-sidebar-menu ui-sref="settings" >
+            <span class=" glyphicon glyphicon-user pr10" aria-hidden="true"></span>
+            {{user.username}}
+            </li>
+            <li hide-sidebar-menu ng-click="logout()" >
+            <span class="glyphicon glyphicon-off pr10" aria-hidden="true"></span>
+            Logout
+            </li>
+            </ul>
+            <ul class="nav nav-sidebar">
+              <li><a href="">Dashboard</a></li>
+              <li><a href="">All expenses</a></li>
+              <li><a href="">Groups</a></li>
+              <li><a href="">Friends</a></li>
+<!--               <li><a href="">Another nav item</a></li>
+              <li><a href="">More navigation</a></li>
+ -->        </ul>
+        
+          
+</div>
+
+<!-- <div id="sidebar-wrapper-left" class="menuSidebar">
 
     <ul class="sidebar-nav">
         <li hide-sidebar-menu ui-sref="settings" class="sidebar-left-element">
@@ -198,12 +223,6 @@
             </div>
         </li>
     </ul>
-</div>
--->
+</div> -->
 
-<div class="container pt70" style="margin-bottom: -70px" ng-if="$root.state === 'OFFLINE' && $root.showAlert">
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="dismissAlert()"><span aria-hidden="true">&times;</span></button>
-        <strong>Oh snap !</strong> Your connection with the server seems to be down. You can stay here and enjoy My Money but some features may be unavailable.
-    </div>
-</div>
+
