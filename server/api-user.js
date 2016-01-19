@@ -1,10 +1,12 @@
-module.exports = function(app, userModel, jwt) { 
+module.exports = function(app, userModel, contactModel, jwt) { 
    app.post('/api/user', addUser)
    app.post('/api/authenticate', authenticate)
+   //app.get('/api/user', getAllUsers)
     /*app.put('/api/user', editUser)
 	app.delete('/api/user', deleteUser)
     app.post('/api/forgot', sendmail)
     app.post('/api/passchange/:token', change)*/
+    //app.get('/api/contact1', findContact1)
 
 
 	function addUser(req, res , next) {
@@ -78,5 +80,19 @@ module.exports = function(app, userModel, jwt) {
 	    });
 	}
 
+	
 
+/*	function findContact1 (req, res, next) {
+
+		contactModel.find(function (err, data){
+			 if (err) {
+	            res.json({
+	                type: false,
+	                data: "Error occured: " + err
+	            });
+	        } else {
+	               res.json(data); 
+		}
+	});
+}*/
 }
