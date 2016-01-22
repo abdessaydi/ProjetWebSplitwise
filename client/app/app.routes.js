@@ -27,5 +27,17 @@
                     controller: 'BillController'
             
             })
+            .state('friends', {
+                    url: '/friends',
+                    templateUrl: 'app/components/friends/friendView.html',
+                    controller: 'FriendController'
+            
+            })
+            .state('login', {
+                    url: '/',
+                    templateUrl: 'app/components/signup/signupView.html',
+                    controller: 'SignupController'
+            
+            })
 		}])
 })();
