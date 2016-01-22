@@ -1,70 +1,27 @@
-
 <div class="container pt70 pb100">
-  <div ng-if="accounts.length > 0" class="row hidden-xs accountDescription">
-    <div class="col-xs-3 algcenter">Name</div>
-    <div class="col-xs-3 algcenter">Type</div>
-    <div class="col-xs-3 algcenter">Currency</div>
+  <div ng-if="bills.length > 0" class="row hidden-xs accountDescription">
+    <div class="col-xs-3 algcenter">description</div>
+    <div class="col-xs-3 algcenter">Amount</div>
+    <div class="col-xs-3 algcenter">Date</div>
   </div>
-  <div class="row accountLine" ng-repeat="acc in accounts">
+  <div class="row accountLine" ng-repeat="bill in bills">
     <div class="col-xs-12 col-md-3 algcenter">
-      <span>{{ acc.name }}</span>
+      <span>{{ bill.description }}</span>
     </div>
     <div class="col-xs-12 col-md-3 algcenter">
-      <span>{{ acc.type | accountType }}</span>
+      <span>{{ bill.amount }}</span>
       </select>
     </div>
     <div class="col-xs-12 col-md-3 algcenter">
-      <span>{{ acc.currency | accountCurrency}}</span>
+      <span>{{ bill.date }}</span>
       </select>
     </div>
     <div class="col-xs-12 col-md-3 algcenter">
-      <button ui-sref="operation({accountId : acc._id})" class="btn btn-info btn-xs">
-        Show the account
+      <button ui-sref="showbill({billId : bill._id})" class="btn btn-info btn-xs">
+        Show the bill
       </button>
-      <button ng-really-message="Do you really want to delete this account?" ng-really-click="deleteAccount(acc._id)" class="btn btn-danger btn-xs">
+      <button ng-really-message="Do you really want to delete this expense?" ng-really-click="deletebill(bill._id)" class="btn btn-danger btn-xs">
         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
       </button>
     </div>
   </div>
-
-  <div class="row text-center" ng-if="accounts.length <= 0">
-    <h1>Nothing to show</h1>
-    <p>There is no bill yet, let's <a btn-add-operation href="" >create the first one</a> !</p>
-  </div>
-
-  <div btn-add-operation tooltip class="circle" data-toggle="modal" data-placement="left" title="Add account" data-target=".modal-operation">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-  </div>
-
-  <div close-right-menu id="sidebar-wrapper-right" class="menuSidebar">
-    <form name="accountForm" class="sidebar-nav" novalidate>
-      <!-- Form Name -->
-      <legend class="sidebar-brand">expenses</legend>
-
-      <div class="form-group" ng-class="{ 'has-error' : accountForm.name.$invalid && (accountForm.$submitted || accountForm.name.$touched) }">
-        <label class="control-label" for="name">Bill Description>
-        <input id="name" name="name" ng-model="accountCreateModel.name" placeholder="Account Name" class="form-control input-md" type="text" required>
-        <div ng-show="accountForm.$submitted || accountForm.name.$touched">
-          <span class="error help-block" ng-show="accountForm.name.$error.required">Name is require</span>
-        </div>
-      </div>
-
-      <div class="form-group" ng-class="{ 'has-error' : accountForm.currency.$invalid && (accountForm.$submitted || accountForm.currency.$touched) }">
-        <label class="control-label" for="currency">Currency</label>
-        <select id="currency" name="currency" ng-model="accountCreateModel.currency" class="form-control" ng-options="currency as currency.name for currency in currencys" required>
-        </select>
-        <div ng-show="accountForm.$submitted || accountForm.currency.$touched">
-          <span class="error help-block" ng-show="accountForm.currency.$error.required">Currency is require</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <button type="submit"  ng-disabled="accountForm.$invalid && accountForm.$submitted" ng-click="addAccount(accountCreateModel)" id="button" name="button" class="btn btn-primary">Add</button>
-        <button type="button" close-menu-create-operation class="btn btn-default" ng-click="resetForm()">Close</button>
-      </div>
-    </form>
-
-    
-  </div>
-</div>
-

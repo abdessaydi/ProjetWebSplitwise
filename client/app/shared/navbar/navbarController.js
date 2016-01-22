@@ -3,8 +3,8 @@
 
     angular
     .module('controllers')
-    .controller('NavbarController',['$scope','$rootScope', 'SignupService'
-            ,function($scope, $rootScope , SignupService){
+    .controller('NavbarController',['$scope', '$rootScope', '$state', 'SignupService','localStorageService'
+            ,function($scope, $rootScope , $state, SignupService, localStorageService){
 
     $scope.signUp = function() {
     	        if(isFormValid()){
@@ -71,7 +71,40 @@
         function refreshScope(){
             $scope.error = null
             $scope.signInUser = {}
-            $scope.signUpUser = {}
+            $scope.signUpUser = {}  
+        }
+
+        $scope.goToDashbord = function(){
+            $state.go('dashboard')
+        }
+
+        $scope.goToExpenses = function(){
+            $state.go('expenses')
+        }
+        $scope.goToFriends = function(){
+            $state.go('friens')
+        }
+
+        $scope.goToGroups = function(){
+            $state.go('expenses')
+        }
+
+        $scope.signIn = function() {
+            
+            if($scope.signInUser.username && $scope.signInUser.password){
+                var loginUser = new SignupService($scope.signInUser)
+                loginUser.$query(function(res) {
+                    if (res.type == false) {
+                        alert(res.data);
+                    } else {
+                        $scope.user = res.data ,
+                        localStorageService.set("USER", $scope.user)
+                        $rootScope.CurrentUser  = res.data;
+                        //StorageServices.login($scope.user)
+                        $state.go('dashboard');
+                    }
+                })
+            }
         }
 
 

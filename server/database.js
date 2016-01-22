@@ -5,7 +5,15 @@ module.exports = {
 
 	getUserModel : function(){
 		return userModel;
-	}
+	},
+
+	getContactModel : function(){
+		return contactModel;
+	},
+
+	getBillModel : function(){
+		return billModel;
+	},
 }
 
 var mongoose = require('mongoose')
@@ -33,31 +41,76 @@ var contactSchema = new Schema({
   	number: String
   },
   {collection : 'splitwise' }
-);
+)
+
+var GroupSchema = new Schema({
+    name: String,
+    members: [{
+    	firstName: String,
+		lastName: String,
+    	email: String
+    }]
+})
+
+var ParticipantsSchema = new Schema({
+	firstName: String,
+	lastName: String
+})
+
+var FriendSchema = new Schema({
+    firstName: String,
+	lastName: String,
+    email: String
+})
+
+var PayedBySchema = new Schema({
+    firstName: String,
+	lastName: String,
+    amount: Number
+})
+
+var IOUSchema = new Schema({
+    owed: String,
+    owee: String,
+    amount: Number
+})
 
 var UserSchema  = new Schema({
-	userID: Number,
-	username: String,
+	clientID: Number,
+	userName: String,
 	lastName: String,
 	firstName: String,
 	email: String,
 	password: String,
 	token: String,
-	/*groups: [],
-	friends: [],
-	total_i_owe: Number,
-	total_i_am_owed: Number*/
-})
+	friends: {type: [FriendSchema]},
+	groups: {type: [GroupSchema]},
+	total_Money_I_Owe: Number,
+	total_Money_I_M_Owed: Number
+},
+	{collection : 'users' }
+)
 
-var BillShcema = new Schema({
-	billID: Number,
-	billname: String,
-	description: String,
-	Amount: Number,
-	payed_by:Number,
-	created_by:Number 
+var BillSchema  = new Schema({
+	billName: String,
+	billDescription: String,
+	billAmount: Number,
+	billGroup: String,
+	created : Date,
+	modified : Date,
+	billParticipants: {type: [ParticipantsSchema]},
+	payedBy: {type: [PayedBySchema]},
+	IOUs: {type: [IOUSchema]}
+	},
+	{collection : 'bills' }
+);
 
-})
-var contactModel = mongoose.model('contact', contactSchema);
+
+var contactModel = mongoose.model('contactModel', contactSchema);
 var userModel = mongoose.model('user', UserSchema);
+var billModel = mongoose.model('billModel', BillSchema);
 
+
+//var contact1 =  new contactModel({ name: "contact1", email: "xxx@yahoo.com", number: "10"});
+//contact1.save();
+//new Date()

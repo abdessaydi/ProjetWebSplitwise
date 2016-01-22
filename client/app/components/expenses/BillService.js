@@ -5,7 +5,7 @@
     angular.module('services')
     .factory('BillResource', ['$resource', function($resource){
 
-        var billResource =  $resource('/api/bill/:id', {}, {
+        var billResource =  $resource('/api/bill/:firstname', {}, {
             getAll : {method:'GET', isArray:true},
             get : {method:'GET'},
             add : {method:'POST'},

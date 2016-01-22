@@ -9,6 +9,10 @@ var application_root = __dirname,
 
 var database = require('./database')
 var apiUser = require('./api-user')
+var apiExpenses = require ('./api-expense')
+var apiGroup = require('./api-group')
+var apiFriend = require('./api-friend')
+var apiBill = require('./api-bill')
 var app = express() ;
 
 app.use(bodyParser.json());	
@@ -18,6 +22,8 @@ app.use(express.static(path.join(application_root ,'../client')));
 
 var db = database.getDB()
 var userModel = database.getUserModel()
+var contactModel = database.getContactModel()
+var billModel = database.getBillModel()
 
 /*app.get('/contactlist' ,function(res, res){
 	console.log('I received a GET request');
@@ -42,4 +48,7 @@ db.once('open', function (callback) {
 
 
 apiUser(app, userModel, jwt)
-
+//apiExpenses(app, tool, billModel)
+apiGroup(app, userModel)
+apiBill(app, userModel, billModel)
+apiFriend(app, userModel)

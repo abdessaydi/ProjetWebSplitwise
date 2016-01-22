@@ -1,8 +1,99 @@
-
+<div>
   <div class="row" >
     <h1>Dashboard</h1>
     <div class="form-group">
-        <button type="submit"  ng-disabled="accountForm.$invalid && accountForm.$submitted" ng-click="addAccount(accountCreateModel)" id="button" name="button" class="btn btn-primary">Add Bill</button>
+          
   </div>
+  <a  class="btn btn-primary" data-toggle="modal" data-target="#addFriendDepense">Add</a>
+
+
+   <div class="modal fade" id="addBill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title" id="myModalLabel">Add a expense</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form class="container-fluid" ng-submit="envoyer()">
+                                        <div class="col-md-12">
+                                          <span>It is about: </span>
+                                          <select name="friend" ng-model="expense.friend">
+                                            <option ng-repeat="friend in Listefriends" value="{{friend.email}}">{{friend.pseudo}}</option>
+                                          </select>
+                                        </div>
+                                        <br><br>
+
+                                        <div class="col-md-12">
+                                          <div class="input-group">
+                                            <input type="number" step="any" ng-model="expense.cost" class="form-control" placeholder="Montant" required>
+                                            <span class="input-group-addon">€</span>
+                                          </div>
+                                          <br>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                          <input type="date" id="expensedate" name="expensedate" ng-model="expense.date" placeholder="Date"  class="form-control" required>
+                                          <br>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                          <label for="inputDescription" class="sr-only">Description</label>
+                                          <textarea id="inputDescription" ng-model="expense.description" class="form-control" placeholder="Description" required autofocus></textarea>
+                                          <br>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                          <p>Payed By <a href="" ng-click="">{{expense.payerText}}</a>  </p>
+                                          <br>
+                                        </div>
+
+                                        <div class="col-md-12" ng-show="detail">
+                                          <div class="input-group">
+                                            <label for="inputYou" class="sr-only">Split</label>
+                                            <input type="number" step="any" id="inputPseudo" ng-model="expense.you" class="form-control" placeholder="Part du payeur" autofocus>
+                                            <span class="input-group-addon">€</span>
+                                          </div>
+                                          <br>
+                                          <div class="input-group">
+                                            <label for="inputYou" class="sr-only">the owed Part</label>
+                                            <input type="number" step="any" id="inputPseudo" ng-model="expense.owe" class="form-control" placeholder="Part de l'ami" autofocus>
+                                            <span class="input-group-addon">€</span>
+                                          </div>
+                                          <br>
+                                          <p><b>TOTAL : {{ expense.you + expense.owe | currency : "€"}}</b> <span class="pull-right">{{ expense.cost - (expense.you + expense.owe) | currency : "€" }} restants</span></p>
+                                          <br>
+                                        </div>
+
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="addBill()">Add</button>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <table>
+                              <div class="panel-body" >
+                              <div class="col-md-6">
+                                <div class="thumbnail">
+                                  <div class="caption">
+                                    <h4 class="text-center">You Owe</h4>
+                                    <p >{{CurrentUser.total_Money_I_Owe}}</p>
+
+
+                                  </div>
+                                </div>
+                              </div>  
+                              <div class="col-md-6">
+                                <div class="thumbnail">
+                                  <div class="caption">
+                                    <h4 class="text-center">You are Owed</h4> 
+                                    <p>{{CurrentUser.total_Money_I_M_Owed}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            </table>
+                            </div>
+                </div>
 
   

@@ -3,27 +3,24 @@
 
     angular
         .module('controllers')
-        .controller('BillController', ['$scope', '$rootScope', 'BillResource', AccountController])
+        .controller('DashboardController', ['$scope', '$rootScope','localStorageService',  DashboardController])
 
-    function AccountController($scope, $rootScope, AccountResource, initService, StorageServices) {
-        $scope.currencys = CURRENCYS
-        $scope.accountTypes = ACCOUNT_TYPES
-        $scope.accountCreateModel = {};
+    function DashboardController($scope, $rootScope,localStorageService ) {
+        
+        $scope.CurrentUser = localStorageService.get("USER") ;
 
         /**
          * Refresh the account view
          */
         $scope.refresh = function() {
-            StorageServices.getAccounts(function(accounts){
-                $scope.accounts = accounts
-            })
-        }
+            var CurrentUser = localStorageService.get("USER");
+            $scope.username = CurrentUser.username ; 
 
-        /**
-         * @Description
-         * Reset the form
-         * Close it and reset values to default
-         */
+
+           /* StorageServices.getAccounts(function(accounts){
+                $scope.accounts = accounts
+            })*/
+        }
         $scope.resetForm = function(){
             $scope.closeRightMenu()
             $scope.accountCreateModel = {}

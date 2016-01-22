@@ -1,0 +1,22 @@
+  <div class="container">
+    <div ng-controller="index">
+      <h1 id="headline">Friend Finder</h1>
+      <div class="block">
+      <input type="text" ng-model="query.name" class="search" placeholder="Search friends.." />
+      <button ng-click="reverse()">Reverse Order</button>
+      <input type="text" ng-model="newName" class="third" placeholder="Name.." />
+      <input type="text" ng-model="newGender" class="third" placeholder="Gender.." />
+      <input type="text" ng-model="newNumber" class="third" placeholder="Phone.." />
+      <button ng-click="addUser()">Add Friend</button>
+      
+      <ul class="title">
+        <li class="no-hover">Name<span>Phone Number</span></li>
+      </ul>
+      <div id="friend-list" >
+        <ul>
+          <li ng-repeat="friend in friends | filter: query | orderBy: orderList" ng-class="{odd: $odd, f: friend.gender == 'female', m: friend.gender == 'male'}"><img class="user-image" ng-src="{{friend.image}}"/>{{friend.name}}<span>{{friend.number}}</span></li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>

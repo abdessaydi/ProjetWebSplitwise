@@ -10,9 +10,7 @@
             <button ng-show="user" toggle-sidebar-menu class="navbar-brand hamburger-button">Show navigation</button>
             <label class="navbar-brand">
                 SplitWise
-                <span ng-show="account !== undefined" class="hidden-xs">
-                    – {{ account.name }}
-                </span>
+               
             </label>
         </div>
         <div class="collapse navbar-collapse" id="collapse">
@@ -30,12 +28,7 @@
                     {{$root.state}}
                 </li>
                 <li ng-show="false">
-                    <select ng-model="initSelector" name="" id="">
-                        <option value="dataset_etienne.json">dataset_etienne.json</option>
-                        <option value="dataset_etienne_budget.json">dataset_etienne_budget.json</option>
-                        <option value="dataset_jordan.json">dataset_jordan.json</option>
-                        <option value="dataset_youssef.json">dataset_youssef.json</option>
-                    </select>
+                
                     <button class="navbar-btn btn btn-warning btn-xs" ng-click="initData()">Init</button >
                 </li>
             </ul>
@@ -157,72 +150,15 @@
             </li>
             </ul>
             <ul class="nav nav-sidebar">
-              <li><a href="">Dashboard</a></li>
-              <li><a href="">All expenses</a></li>
-              <li><a href="">Groups</a></li>
-              <li><a href="">Friends</a></li>
-<!--               <li><a href="">Another nav item</a></li>
-              <li><a href="">More navigation</a></li>
- -->        </ul>
+              <li><a href="" ng-click="goToDashboard()">Dashboard</a></li>
+              <li><a href="" ng-click="goToExpenses()">All expenses</a></li>
+              <li><a href="" ng-click="goToGroups()">Groups</a></li>
+              <li><a href="" ng-click="goToFriends()" >Friends</a></li>
+        </ul>
         
           
 </div>
 
-<!-- <div id="sidebar-wrapper-left" class="menuSidebar">
 
-    <ul class="sidebar-nav">
-        <li hide-sidebar-menu ui-sref="settings" class="sidebar-left-element">
-            <span class="glyphicon glyphicon-user pr10" aria-hidden="true"></span>
-            {{user.username}}
-        </li>
-
-        <li hide-sidebar-menu ng-click="logout()" class="sidebar-left-element">
-            <span class="glyphicon glyphicon-off pr10" aria-hidden="true"></span>
-            Logout
-        </li>
-
-        <li>
-            <hr>
-        </li>
-
-        <li hide-sidebar-menu ui-sref="budget" class="sidebar-left-element">
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-            Budget
-        </li>
-
-        <li hide-sidebar-menu ui-sref="analysis" class="sidebar-left-element">
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-            Analysis
-        </li>
-
-        <li hide-sidebar-menu ng-if="account !== undefined" ui-sref="optPeriod({accountId : account._id})" class="sidebar-left-element">
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-            Periodics operations
-        </li>
-
-        <li hide-sidebar-menu ui-sref="accounts" class="sidebar-left-element">
-            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-            Accounts
-        </li>
-
-        <li ng-show="accounts.length > 0">
-            <hr>
-        </li>
-
-        <li ng-show="accounts.length > 0" class="sidebar-left-element-title">Accounts list</li>
-
-        <li ng-show="accounts.length > 0" hide-sidebar-menu ng-repeat="acc in accounts" class="sidebar-left-element">
-            <div class="row">
-                <div class="col-md-10" ui-sref="operation({accountId : acc._id})">
-                    <span ng-if="account._id!==acc._id">{{ acc.name }}</span>
-                    <b ng-if="account._id===acc._id">{{ acc.name }}</b>
-                </div>
-                <div class="col-md-2">
-                    <a ng-class="{selected: account._id===acc._id}" ui-sref="accountSettings({accountId : acc._id})" class="glyphicon glyphicon-cog pull-right" aria-hidden="true"></a>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div> -->
 
 
